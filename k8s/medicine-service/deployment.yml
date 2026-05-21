@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: medicine-service
-        image: saurabh7nt/microservice-medicine-service:v3
+        image: saurabh7nt/microservice-medicine-service:93326c575a2e5c1d89cb3c7faae3731bff295109
         ports:
           - containerPort: 8082
         env:
