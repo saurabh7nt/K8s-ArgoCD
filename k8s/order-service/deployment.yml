@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: order-service
-        image: saurabh7nt/microservice-order-service:v3
+        image: saurabh7nt/microservice-order-service:93326c575a2e5c1d89cb3c7faae3731bff295109
         ports:
           - containerPort: 8083
         env:
