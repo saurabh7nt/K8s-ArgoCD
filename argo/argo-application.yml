@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/saurabh7nt/Pharmacy-Management-3-Tier-Microservice.git
+    repoURL: https://github.com/saurabh7nt/K8s-ArgoCD.git
     targetRevision: main
     path: k8s
   destination:
