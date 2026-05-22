@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - frontend-service/deployment.yml
+  - frontend-service/service.yml
+
+  - medicine-service/deployment.yml
+  - medicine-service/service.yml
+
+  - order-service/deployment.yml
+  - order-service/service.yml
+
+  - postgres/service.yml
+  - postgres/statefulset.yml
+
+  - user-service/deployment.yml
+  - user-service/service.yml
+
+  - ingress/ingress.yml
+  
