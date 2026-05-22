@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: saurabh7nt/microservice-user-service:de2247ac28187be633ea2cbd2fe8a8419a4d213b
+        image: saurabh7nt/microservice-user-service:e18818c374b215fe013780cecaf870cfca38f8ab
         ports:
           - containerPort: 8081
         env:
