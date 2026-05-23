@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: frontend-service
-        image: saurabh7nt/microservice-frontend-service:v8
+        image: saurabh7nt/microservice-frontend-service:79bf7fcbf7d7ce4ad77618c2613aede338318a71
         ports:
           - containerPort: 80
