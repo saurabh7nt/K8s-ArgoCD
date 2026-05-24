@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pharmacy-managerment
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/saurabh7nt/K8s-ArgoCD.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pharmacy-ns
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

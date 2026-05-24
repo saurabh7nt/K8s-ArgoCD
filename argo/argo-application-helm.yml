@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/saurabh7nt/K8s-ArgoCD.git
     targetRevision: main
-    path: pharmacy-management-chart
+    path: helm/pharmacy-management-chart
     helm:
       valueFiles:
         - values-prod.yaml
