@@ -1,0 +1,51 @@
+{{- range $name, $svc := .Values.services }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}-deployment
+  labels:
+    app: {{ $name }}
+spec:
+  replicas: {{ $svc.replicas }}
+  selector:
+    matchLabels:
+      app: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+    spec:
+      containers:
+        - name: {{ $name }}
+          image: "{{ $svc.image }}:{{ $svc.tag }}"
+          ports:
+            - containerPort: {{ $svc.port }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: {{ $.Values.db.url }}
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ $.Values.db.username }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: {{ $.Values.db.password }}
+            - name: SPRING_JPA_OPEN_IN_VIEW
+              value: "false"
+            - name: CORS_ALLOWED_ORIGINS
+              value: {{ $.Values.cors.allowedOrigins }}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: {{ $svc.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: {{ $svc.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+---
+{{- end }}

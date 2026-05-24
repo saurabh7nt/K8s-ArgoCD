@@ -1,0 +1,63 @@
+services:
+  user-service:
+    image: saurabh7nt/microservice-user-service
+    tag: e18818c374b215fe013780cecaf870cfca38f8ab
+    replicas: 3
+    port: 8081
+
+  order-service:
+    image: saurabh7nt/microservice-order-service
+    tag: 307d6735f3d9fd93736110ce557cc2dacb0e796d
+    replicas: 3
+    port: 8083
+
+  medicine-service:
+    image: saurabh7nt/microservice-medicine-service
+    tag: 551ea5c4d5a68d56e55710502466ef4962b4d723
+    replicas: 3
+    port: 8082
+
+frontend:
+  image: saurabh7nt/microservice-frontend-service
+  tag: latest
+  replicas: 1
+  port: 80
+  servicePort: 5714
+  name: frontend-service
+
+db:
+  image: "postgres:16"
+  url: "jdbc:postgresql://postgres-db-svc:5432/microservices_db"
+  username: "admin"
+  password: "admin123"
+  name: "microservices_db"       
+  storage: "1Gi"
+  storageClassName: "standard"
+  port: 5432
+  replicas: 1
+
+cors:
+  allowedOrigins: "http://localhost:5173,http://127.0.0.1:5173,http://localhost:8080,http://127.0.0.1:8080"
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: ""  # Leave empty for no host-based routing
+      paths:
+        - path: /api/users
+          pathType: Prefix
+          serviceName: user-service-svc
+          servicePort: 8081
+        - path: /api/medicines
+          pathType: Prefix
+          serviceName: medicine-service-svc
+          servicePort: 8082
+        - path: /api/orders
+          pathType: Prefix
+          serviceName: order-service-svc
+          servicePort: 8083
+        - path: /
+          pathType: Prefix
+          serviceName: frontend-service-svc
+          servicePort: 5714

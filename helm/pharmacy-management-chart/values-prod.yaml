@@ -1,0 +1,18 @@
+################################################################################
+# # Only what's different in production those values I have defined here
+################################################################################
+# services:
+#   user-service:
+#     replicas: 3
+#   order-service:
+#     replicas: 3
+#   medicine-service:
+#     replicas: 3
+
+# db:
+#   username: "Prodadmin"
+#   password: "Prodadmin123"
+#   storage: "50Gi"        # much more storage in prod!
+
+# cors:
+#   allowedOrigins: "https://pharmacy.yourdomain.com"  # real domain, not localhost!
